@@ -103,3 +103,5 @@ In any case, this script will allow you to:
  4. Figure out what note was played and select the correct frequency that corresponds to that pitch
  5. Use a second-order difference equation to output a specific pitch per stream
  6. Update the access index to utilize the list of streams like a circular queue
+
+And that's it! Be sure to read through the code and the `Report.pdf` file for more insight on the operation of these scripts.
