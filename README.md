@@ -2,13 +2,16 @@
 
 This is the README for my Python MIDI Synthesizer project, which I completed in Fall 2015 as part of EE4163 (DSP Lab) at the NYU Tandon School of Engineering with Professor Ivan Selesnick.
 
-This project makes use of the PyGame and PyAudio packages within Python to detect MIDI events triggered from my Alesis Q49 MIDI keyboard and then output audio corresponding to the pitches played.
-
 This README only covers a general overview of the different scripts that you will find in this repository. For a more detailed explanation of my project, please read the 'Report.pdf' file.
 
 ## Background
 
+This project makes use of the PyGame and PyAudio packages within Python to detect MIDI events triggered from my Alesis Q49 MIDI keyboard and then output audio corresponding to the pitches played.
 
+You can find more information from the following links:
+* [Alesis Q59](http://www.alesis.com/products/legacy/q49)
+* [PyGame](https://www.pygame.org)
+* [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/)
 
 ## Incremental Scripts
 
