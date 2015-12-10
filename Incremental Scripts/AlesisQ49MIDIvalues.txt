@@ -1,0 +1,70 @@
+These are notes on the MIDI event values for the Alesis Q49, 
+the MIDI keyboard I used for this project.
+
+If you wish to use my scripts, you must use the 0_miditest.py script to find
+out what the values your MIDI controller uses for its MIDI events, so that
+you know when to trigger audio.
+
+----------------------------------------------------------------------------
+
+PyGame MIDI Event Format:
+[[Type, KeyID, Intensity/Value, 0], TimeStamp]
+
+----------------------------------------------------------------------------
+
+[Type]
+
+This determines what the type of the event is.
+
+For my Alesis Q49, I have four possible event types.
+
+Type: 188 is modulation
+    - The Q49 has a modulation knob that I don't utilize in my project.
+
+Type: 236 is pitch bend
+    - The Q49 has a pitch bend knob that I don't utilize in my project.
+
+Type: 144 is keydown
+    - This is what I detect in order to trigger audio for my project.
+
+Type: 128 is keyup
+    - I detect these, but do not utilize them in my project.
+
+----------------------------------------------------------------------------
+
+[KeyID]
+
+The KeyID determines which key on the keyboard that I pressed.
+
+For my Alesis Q49, I have 120 possible keys, which correspond to 12 pitches:
+
+    0: C
+    1: C#
+    2: D
+    3: D#
+    4: E
+    5: F
+    6: F#
+    7: G
+    8: G#
+    9: A
+    10: A#
+    11: B
+
+Pitch 12 would thus be a 'C' and the pattern repeats up to key 119.
+
+----------------------------------------------------------------------------
+
+[Intensity]
+
+This determines how hard I pressed the key.
+
+For my Alesis Q49, values go from 0 to 130, and I use this value to change
+the amplitude of the impulse that is fed through the second-order difference
+equation, to change the loudness of the pitch played.
+
+----------------------------------------------------------------------------
+
+[TimeStamp]
+
+This keeps track of what time the key was pressed. I do not make use of this.
