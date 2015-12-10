@@ -70,8 +70,20 @@ This code still only plays one note at a time, but now the frequency of the note
 
 Since we can get different pitches to be played, it's important to match up those pitches with the actual keys being played. This might be a bit difficult for those who are not familiar with the theory behind musical pitches, but it's quite easy to code up. 
 
+The idea is that each pitch on the keyboard actually corresponds to a specific frequency in audio. For example, the note A4 (that is, the 'A' key on the 4th octave) plays at 440 Hz. Every octave is a set of 12 notes, and the frequency between notes of an octave are multiplied by a factor of 2. So the note A5 (one octave above A4) is 880 Hz. Since notes are evenly spaced out in frequency, and it takes 12 notes to get to a multiple of 2, each note is a multiple of root_12(2) = 1.059463.
+
+So in this script, I keep track of a list of pitches starting at 130.81 Hz (the frequency of C3) that increments by multiplying 1.059463 to each consecutive pitch. This is done using Python's list comprehensions. The rest of the code remains essentially the same, since `3_alesiswithrandompitch.py` already worked with outputting audio based on a list of frequencies, which we are doing here.
+
+To actually match the key up with the pitch frequency, I just take the keyID (which for my keyboard goes from 0 to 120) and mod by 60, which in this case is the number of unique frequencies that I'm allowing my synth to play. This allows my keys to match up to the correct pitches I want to play.
+
 ### 5_doublepitchtest.py
 
-### 6_alesiswithmultiplepitches.py
+The previous script only plays one pitch at a time, which is not at all close to a true simulation of a keyboard. You want to be able to play (and hear) multiple notes at once, so I needed to figure out a way to do approach playing multiple pitches.
 
-## MIDIKeyboardSynthesizer.py
+One approach is to just use multiple difference equations to compute the output values and sum them up (making use of the theory of wave superposition). This, of course, is difficult as well as problematic, since you can easily cause overflow to occur when packing the output values up.
+
+Another approach&mdash;the one I took&mdash;was to just open multiple PyAudio streams at once, and output a different audio signal from each stream. We had never done this in the course, so I needed to use this script to test that it could be done. One worry I had was that PyAudio would not support multiple streams, or would output the content of each stream sequentially instead of concurrently.
+
+By outputting two different pitches from two different PyAudio streams in this script, I confirmed that you could indeed use multiple streams at once to achieve the playing of multiple pitches, simultaneously.
+
+### 6_alesiswithmultiplepitches.py (MIDIKeyboardSynthesizer.py)
