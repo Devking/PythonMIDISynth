@@ -87,3 +87,19 @@ Another approach&mdash;the one I took&mdash;was to just open multiple PyAudio st
 By outputting two different pitches from two different PyAudio streams in this script, I confirmed that you could indeed use multiple streams at once to achieve the playing of multiple pitches, simultaneously.
 
 ### 6_alesiswithmultiplepitches.py (MIDIKeyboardSynthesizer.py)
+
+In this final script, I put all of the pieces together.
+
+Based off the previous script, I confirmed that you could open multiple PyAudio streams to output different pitches simultaneously.
+
+Based off all the earlier scripts, I was able to correspond the playing of specific keys on the MIDI keyboard to specific frequencies to be output.
+
+This script opens up multiple PyAudio streams at once (using list comprehension) and keeps track of the frequency played in each stream using a secondary list. I then keep track of an index, which represents the latest stream that was used. I then utilize the concept of a circular queue/array, which means that I will fill up the streams one-by-one based on the notes I play, and only overwrite the *earliest* note that I played. Whereas before, any single pitch played would override the currently played pitch, this allows me to play *up to* the number of streams I have open, as long as I increment the access index properly.
+
+In any case, this script will allow you to:
+ 1. Detect the MIDI event triggered from pressing a key on your keyboard
+ 2. Open a list of PyAudio streams, each corresponding to a single pitch to be played
+ 3. Poll for MIDI events and trigger an impulse response in one stream at a time
+ 4. Figure out what note was played and select the correct frequency that corresponds to that pitch
+ 5. Use a second-order difference equation to output a specific pitch per stream
+ 6. Update the access index to utilize the list of streams like a circular queue
