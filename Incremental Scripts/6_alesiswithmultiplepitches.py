@@ -53,7 +53,7 @@ stream_buffer = [p.open(format            = p.get_format_from_width(sampleWidth)
                         frames_per_buffer = blockSize,
                         rate              = samplingRate,
                         input             = False,
-                        output            = True) 
+                        output            = True)
                 for i in range(NOSTREAMS)]
 
 # Circular buffer of arrays
@@ -70,6 +70,7 @@ accesskey = 0
 
 midi.init()
 INPUTNO = midi.get_default_input_id()
+input = midi.Input(INPUTNO)
 
 print '*******************'
 print '** Ready to play **'
