@@ -68,7 +68,7 @@ This code still only plays one note at a time, but now the frequency of the note
 
 ### 4_alesiswithsinglepitch.py
 
-Since we can get different pitches to be played, it's important to match up those pitches with the actual keys being played. This might be a bit difficult for those who are not familiar with the theory behind musical pitches, but it's quite easy to code up. 
+Since we can get different pitches to be played, it's important to match up those pitches with the actual keys being played. This might be a bit difficult for those who are not familiar with the theory behind musical pitches, but it's quite easy to code up.
 
 The idea is that each pitch on the keyboard actually corresponds to a specific frequency in audio. For example, the note A4 (that is, the 'A' key on the 4th octave) plays at 440 Hz. Every octave is a set of 12 notes, and the frequency between notes of an octave are multiplied by a factor of 2. So the note A5 (one octave above A4) is 880 Hz. Since notes are evenly spaced out in frequency, and it takes 12 notes to get to a multiple of 2, each note is a multiple of root_12(2) = 1.059463.
 
